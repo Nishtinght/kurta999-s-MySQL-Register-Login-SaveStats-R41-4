@@ -2,13 +2,13 @@
 #include <a_mysql> //https://github.com/pBlueG/SA-MP-MySQL/releases/download/R41-4/mysql-R41-4-win32.zip
 #include <zcmd> //https://github.com/YashasSamaga/I-ZCMD/archive/master.zip
 
-#define MYSQL_HOST "szolg·ltatÛ"
-#define MYSQL_USER "felhaszn·lÛnÈv"
-#define MYSQL_PASS "jelszÛ"
-#define MYSQL_DB "adatb·zis"
-new MySQL:SQL; // v·ltoztathatÛ "SQL"
+#define MYSQL_HOST "szolg√°ltat√≥"
+#define MYSQL_USER "felhaszn√°l√≥n√©v"
+#define MYSQL_PASS "jelsz√≥"
+#define MYSQL_DB "adatb√°zis"
+new MySQL:SQL; // v√°ltoztathat√≥ "SQL"
 
-#define ChangeNameDialog(%1) ShowPlayerDialog(%1, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, !"{0080FF}NÈvv·lt·s", !"{FFFFFF}Õrd be a leendı neved a nÈvv·lt·shoz:", !"{00FF00}Tov·bb", !"{FF0000}Bez·r")
+#define ChangeNameDialog(%1) ShowPlayerDialog(%1, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, !"{0080FF}N√©vv√°lt√°s", !"{FFFFFF}√çrd be a leend√µ neved a n√©vv√°lt√°shoz:", !"{00FF00}Tov√°bb", !"{FF0000}Bez√°r")
 
 new g_szFormatString[144];
 #define SendClientMessagef(%1,%2,%3) SendClientMessage(%1, %2, (format(g_szFormatString, sizeof(g_szFormatString), %3), g_szFormatString))
@@ -47,8 +47,8 @@ enum
 
 public OnFilterScriptInit()
 {
-	print("\nMySQL RegisterLogin-SaveStats by kurta999 bet˚tve\n");
- 	SQL = mysql_connect("szolg·ltatÛ", "felhaszn·lÛnÈv", "jelszÛ", "adatb·zis");
+	print("\nMySQL RegisterLogin-SaveStats by kurta999 bet√ªtve\n");
+ 	SQL = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 	return 1;
 }
 
@@ -123,7 +123,7 @@ public THREAD_Autologin(playerid, queue)
 	if(rows)
 	{
 		LoginPlayer(playerid);
-		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}BejelentkezÈs: {00FF00}Automatikusan bejelentkeztÈl.");
+		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Bejelentkez√©s: {00FF00}Automatikusan bejelentkezt√©l.");
 	}
 	return 1;
 }
@@ -176,20 +176,20 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(g_PlayerFlags{playerid} & e_LOGGED_IN)
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}BejelentkezÈs: {FF4040}M·r bejelentkeztÈl.");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Bejelentkez√©s: {FF4040}M√°r bejelentkezt√©l.");
 				return 1;
 			}
 
 			if(isnull(inputtext))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}BejelentkezÈs: {FF0000}Nem Ìrt·l be jelszÛt!");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Bejelentkez√©s: {FF0000}Nem √≠rt√°l be jelsz√≥t!");
 				LoginDialog(playerid);
 				return 1;
 			}
 
 			if(!(3 <= strlen(inputtext) <= 20))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}BejelentkezÈs: {FF0000}Nem megfelelı az ·ltalad beÌrt jelszÛ hossz˙s·ga({FF4040}3-20{FF0000})!");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Bejelentkez√©s: {FF0000}Nem megfelel√µ az √°ltalad be√≠rt jelsz√≥ hossz√∫s√°ga({FF4040}3-20{FF0000})!");
 				LoginDialog(playerid);
 				return 1;
 			}
@@ -202,13 +202,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			return RegisterDialog(playerid);
 			if(isnull(inputtext))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Regisztr·ciÛ: {FF0000}Nem Ìrt·l be jelszÛt!");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Regisztr√°ci√≥: {FF0000}Nem √≠rt√°l be jelsz√≥t!");
 				RegisterDialog(playerid);
 				return 1;
 			}
 			if(!(3 <= strlen(inputtext) <= 20))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Regisztr·ciÛ: {FF0000}Nem megfelelı az ·ltalad beÌrt jelszÛ hossz˙s·ga({FF4040}3-20{FF0000})!");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Regisztr√°ci√≥: {FF0000}Nem megfelel√µ az √°ltalad be√≠rt jelsz√≥ hossz√∫s√°ga({FF4040}3-20{FF0000})!");
 				RegisterDialog(playerid);
 				return 1;
 			}
@@ -221,19 +221,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			return 0;
 			if(!(3 <= strlen(inputtext) <= 20))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}NÈvv·lt·s: {FF0000}Nem megfelelı az ·ltalad beÌrt nÈv hossz˙s·ga({FF4040}3-20{FF0000})!");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}N√©vv√°lt√°s: {FF0000}Nem megfelel√µ az √°ltalad be√≠rt n√©v hossz√∫s√°ga({FF4040}3-20{FF0000})!");
 
 				return 1;
 			}
 			if(!NameCheck(inputtext))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}NÈvv·lt·s: {FF0000}Nem megfelelı az ·ltalad beÌrt nÈv karakter-tartalma({FF4040}A-Z, 0-9, [], (), $, @.{FF0000})!");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}N√©vv√°lt√°s: {FF0000}Nem megfelel√µ az √°ltalad be√≠rt n√©v karakter-tartalma({FF4040}A-Z, 0-9, [], (), $, @.{FF0000})!");
 				ChangeNameDialog(playerid);
 				return 1;
 			}
 			if(!strcmp(inputtext, pName(playerid), true))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}NÈvv·lt·s: {FF4040}Jelenleg is ezt a nevet haszn·lod.");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}N√©vv√°lt√°s: {FF4040}Jelenleg is ezt a nevet haszn√°lod.");
 				ChangeNameDialog(playerid);
 				return 1;
 			}
@@ -246,9 +246,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			return 0;
 			if(!(3 <= strlen(inputtext) <= 20))
 			{
-				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}JelszÛv·lt·s: {FF0000}Az ·ltalad beÌrt jelszÛ hossz˙s·ga{FF4040}(3-20){FF0000}nem megfelelı!");
+				SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Jelsz√≥v√°lt√°s: {FF0000}Az √°ltalad be√≠rt jelsz√≥ hossz√∫s√°ga{FF4040}(3-20){FF0000}nem megfelel√µ!");
 
-				ShowPlayerDialog(playerid, DIALOG_CHANGEPASS, DIALOG_STYLE_INPUT, "{0080FF}JelszÛv·lt·s", "{FFFFFF}Lentre Ìrd be az ˙j jelszavad! \n\n", "{00FF00}Tov·bb", "{FF0000}Bez·r");
+				ShowPlayerDialog(playerid, DIALOG_CHANGEPASS, DIALOG_STYLE_INPUT, "{0080FF}Jelsz√≥v√°lt√°s", "{FFFFFF}Lentre √≠rd be az √∫j jelszavad! \n\n", "{00FF00}Tov√°bb", "{FF0000}Bez√°r");
 				return 1;
 			}
 			format(g_szQuery, sizeof(g_szQuery), "SELECT `pass` FROM `players` WHERE `reg_id` = %d", GetPVarInt(playerid, "RegID"));
@@ -274,12 +274,12 @@ public THREAD_DialogLogin(playerid, queue)
 	cache_get_field_count(fields);
 	if(rows != 1)
 	{
-		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}BejelentkezÈs: {FF0000}Az ·ltalad beÌrt jelszÛ nem megfelelı!");
+		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}Bejelentkez√©s: {FF0000}Az √°ltalad be√≠rt jelsz√≥ nem megfelel√µ!");
 		LoginDialog(playerid);
 		return 1;
 	}
 	LoginPlayer(playerid);
-	SendClientMessage(playerid, 0x00FF00FF, !"{0080FF}BejelentkezÈs: {00FF00}Sikeresen bejelentkeztÈl.");
+	SendClientMessage(playerid, 0x00FF00FF, !"{0080FF}Bejelentkez√©s: {00FF00}Sikeresen bejelentkezt√©l.");
 	return 1;
 }
 
@@ -292,7 +292,7 @@ public THREAD_Register_1(playerid, password[], queue)
 	cache_get_field_count(fields);
 	if(rows)
 	{
-		SendClientMessage(playerid, 0x00FF00FF, "MySQL: A sorok sz·ma tˆbb, mint 0, kir˙gtunk, ugyanis hiba lehet ebbıl.");
+		SendClientMessage(playerid, 0x00FF00FF, "MySQL: A sorok sz√°ma t√∂bb, mint 0, kir√∫gtunk, ugyanis hiba lehet ebb√µl.");
 		printf("MySQL rosw > 1 (%d, %s)", playerid, password);
 		Kick(playerid);
 		return 1;
@@ -324,7 +324,7 @@ public THREAD_Changename(playerid, inputtext[], queue)
 	cache_get_field_count(fields);
 	if(rows)
 	{
-		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}NÈvv·lt·s: {FF0000}Ez a nÈv m·r haszn·latban van.");
+		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}N√©vv√°lt√°s: {FF0000}Ez a n√©v m√°r haszn√°latban van.");
 		ChangeNameDialog(playerid);
 		return 1;
 	}
@@ -332,7 +332,7 @@ public THREAD_Changename(playerid, inputtext[], queue)
 	GetPlayerName(playerid, szOldName, sizeof(szOldName));
 	if(SetPlayerName(playerid, inputtext) != 1)
 	{
-		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}NÈvv·lt·s: {FF0000}Az ·ltalad beÌrt nÈv nem megfelelı!");
+		SendClientMessage(playerid, 0x00FF00FF, "{0080FF}N√©vv√°lt√°s: {FF0000}Az √°ltalad be√≠rt n√©v nem megfelel√µ!");
 		ChangeNameDialog(playerid);
 		return 1;
 	}
@@ -342,7 +342,7 @@ public THREAD_Changename(playerid, inputtext[], queue)
 	mysql_pquery(SQL, g_szQuery);
 	format(g_szQuery, sizeof(g_szQuery), "UPDATE `players` SET `name` = '%s' WHERE `reg_id` = %d", inputtext, pRegID);
 	mysql_pquery(SQL, g_szQuery);
-	SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}NÈvv·lt·s: {00FF00}Sikeresen megv·ltoztattad a neved. ⁄j neved: {00FFFF}%s{00FF00}.", inputtext);
+	SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}N√©vv√°lt√°s: {00FF00}Sikeresen megv√°ltoztattad a neved. √öj neved: {00FFFF}%s{00FF00}.", inputtext);
 	return 1;
 }
 
@@ -357,7 +357,7 @@ public THREAD_Changepass(playerid, password[], queue)
 	gettime(hour, minute, second);
 	format(g_szQuery, sizeof(g_szQuery), "INSERT INTO `namechanges_p`(id, reg_id, name, oldpass, newpass, time) VALUES(0, %d, '%s', '%s', '%s', '%02d.%02d.%02d/%02d.%02d.%02d')", pRegID, pName(playerid), szOldPass, szEscaped, year, month, day, hour, minute, second);
 	mysql_pquery(SQL, g_szQuery);
-	SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}JelszÛv·lt·s: {00FF00}Sikeresen megv·ltoztattad a jelszavad. ⁄j jelszavad: {00FFFF}%s{00FF00}.", password);
+	SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}Jelsz√≥v√°lt√°s: {00FF00}Sikeresen megv√°ltoztattad a jelszavad. √öj jelszavad: {00FFFF}%s{00FF00}.", password);
 	return 1;
 }
 
@@ -382,16 +382,16 @@ public THREAD_Findplayer(playerid, inputtext[], queue)
 	iData[5] = 1;
 	switch(iData[5])
 	{
-		case FIGHT_STYLE_NORMAL: szFetch = "Norm·l";
-	   	case FIGHT_STYLE_BOXING: szFetch = "BoxolÛ";
+		case FIGHT_STYLE_NORMAL: szFetch = "Norm√°l";
+	   	case FIGHT_STYLE_BOXING: szFetch = "Boxol√≥";
 	   	case FIGHT_STYLE_KUNGFU: szFetch = "Kungfu";
 		case FIGHT_STYLE_KNEEHEAD: szFetch = "Kneehead";
 		case FIGHT_STYLE_GRABKICK: szFetch = "Grabkick";
 		case FIGHT_STYLE_ELBOW: szFetch = "Elbow";
 	}
-	SendClientMessagef(playerid, 0x00FF00FF, "NÈv: %s, ID: %d, RegID: %d, PÈnz: %d, XP: %d", inputtext, playerid, iData[0], iData[1], iData[2]);
-	SendClientMessagef(playerid, 0x00FF00FF, "÷lÈsek: %d, Hal·lok: %d, Ar·ny: %.2f, ‹tÈs StÌlus: %s", iData[3], iData[4], (iData[3] && iData[4]) ? (floatdiv(iData[3], iData[4])) : (0.0), szFetch);
-	SendClientMessagef(playerid, 0x00FF00FF, "Regiszt·ciÛ ideje: %s, Utolj·ra a szerveren: %s", szRegDate, szLaston);
+	SendClientMessagef(playerid, 0x00FF00FF, "N√©v: %s, ID: %d, RegID: %d, P√©nz: %d, XP: %d", inputtext, playerid, iData[0], iData[1], iData[2]);
+	SendClientMessagef(playerid, 0x00FF00FF, "√ñl√©sek: %d, Hal√°lok: %d, Ar√°ny: %.2f, √út√©s St√≠lus: %s", iData[3], iData[4], (iData[3] && iData[4]) ? (floatdiv(iData[3], iData[4])) : (0.0), szFetch);
+	SendClientMessagef(playerid, 0x00FF00FF, "Regiszt√°ci√≥ ideje: %s, Utolj√°ra a szerveren: %s", szRegDate, szLaston);
 	return 1;
 }
 
@@ -414,16 +414,16 @@ public THREAD_Stats(playerid, queue)
 	cache_get_value_index(0, 1, Laston);
 	switch(GetPlayerFightingStyle(playerid))
 	{
-		case FIGHT_STYLE_NORMAL: szStyle = "Norm·l";
-	   	case FIGHT_STYLE_BOXING: szStyle = "BoxolÛ";
+		case FIGHT_STYLE_NORMAL: szStyle = "Norm√°l";
+	   	case FIGHT_STYLE_BOXING: szStyle = "Boxol√≥";
 	   	case FIGHT_STYLE_KUNGFU: szStyle = "Kungfu";
 		case FIGHT_STYLE_KNEEHEAD: szStyle = "Kneehead";
 		case FIGHT_STYLE_GRABKICK: szStyle = "Grabkick";
 		case FIGHT_STYLE_ELBOW: szStyle = "Elbow";
 	}
-	SendClientMessagef(playerid, 0x00FF00FF, "NÈv: %s, ID: %d, RegID: %d, PÈnz: %d, XP: %d", pName(playerid), playerid, GetPVarInt(playerid, "RegID"), GetPlayerMoney(playerid), GetPlayerScore(playerid));
-	SendClientMessagef(playerid, 0x00FF00FF, "÷lÈsek: %d, Hal·lok: %d, Ar·ny: %.2f, ‹tÈs StÌlus: %s", Kills, Deaths, (Kills && Deaths) ? (floatdiv(Kills, Deaths)) : (0.0), szStyle);
-	SendClientMessagef(playerid, 0x00FF00FF, "Regiszt·ciÛ ideje: %s, Utolj·ra a szerveren: %s", RegDate, Laston);
+	SendClientMessagef(playerid, 0x00FF00FF, "N√©v: %s, ID: %d, RegID: %d, P√©nz: %d, XP: %d", pName(playerid), playerid, GetPVarInt(playerid, "RegID"), GetPlayerMoney(playerid), GetPlayerScore(playerid));
+	SendClientMessagef(playerid, 0x00FF00FF, "√ñl√©sek: %d, Hal√°lok: %d, Ar√°ny: %.2f, √út√©s St√≠lus: %s", Kills, Deaths, (Kills && Deaths) ? (floatdiv(Kills, Deaths)) : (0.0), szStyle);
+	SendClientMessagef(playerid, 0x00FF00FF, "Regiszt√°ci√≥ ideje: %s, Utolj√°ra a szerveren: %s", RegDate, Laston);
 	return 1;
 }
 
@@ -436,12 +436,12 @@ public THREAD_FindplayerDialog(playerid, reszlet[], queue)
 	cache_get_field_count(fields);
 	if(!rows)
 	{
-		SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}J·tÈkoskeresÈs: {FF0000}Nincs tal·lat a(z) {FF4040}'%s' {FF0000}rÈszletre.", reszlet);
+		SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}J√°t√©koskeres√©s: {FF0000}Nincs tal√°lat a(z) {FF4040}'%s' {FF0000}r√©szletre.", reszlet);
 		return 1;
 	}
 	else if(rows > 250)
 	{
-		SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}J·tÈkoskeresÈs: {FF0000}A(z) '%s' rÈszletre tˆbb, mint 180 tal·lat van{FF4040}(%d){FF0000}.", reszlet, rows);
+		SendClientMessagef(playerid, 0x00FF00FF, "{0080FF}J√°t√©koskeres√©s: {FF0000}A(z) '%s' r√©szletre t√∂bb, mint 180 tal√°lat van{FF4040}(%d){FF0000}.", reszlet, rows);
 		return 1;
 	}
 	new x, szName[MAX_PLAYER_NAME], str[64];
@@ -452,31 +452,31 @@ public THREAD_FindplayerDialog(playerid, reszlet[], queue)
 		strcat(g_szDialogFormat, szName);
 		strcat(g_szDialogFormat, "\n");
 	}
-	format(str, sizeof(str), "{00FF00}Tal·latok a(z) {00FFFF}'%s' {00FF00}rÈszletre.. {00FF00}(%d)", reszlet, x);
-	ShowPlayerDialog(playerid, DIALOG_FINDPLAYER, DIALOG_STYLE_LIST, str, g_szDialogFormat, "{00FF00}Tov·bb", "{FF0000}Bez·r");
+	format(str, sizeof(str), "{00FF00}Tal√°latok a(z) {00FFFF}'%s' {00FF00}r√©szletre.. {00FF00}(%d)", reszlet, x);
+	ShowPlayerDialog(playerid, DIALOG_FINDPLAYER, DIALOG_STYLE_LIST, str, g_szDialogFormat, "{00FF00}Tov√°bb", "{FF0000}Bez√°r");
 	return 1;
 }
 
 stock LoginDialog(playerid)
 {
 	new str[64];
-	format(str, sizeof(str), "{0080FF}BejelentkezÈs: {%06x}%s(%d)", GetPlayerColor(playerid) >>> 8, pName(playerid), playerid);
-	ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, str, !"{FFFFFF}Ez a felhaszn·lÛ m·r regisztr·lva van. Õrd be a meglÈvı jelszavad a bejelentkezÈshez:", !"{00FF00}Tov·bb", !"{FF0000}Bez·r");
+	format(str, sizeof(str), "{0080FF}Bejelentkez√©s: {%06x}%s(%d)", GetPlayerColor(playerid) >>> 8, pName(playerid), playerid);
+	ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, str, !"{FFFFFF}Ez a felhaszn√°l√≥ m√°r regisztr√°lva van. √çrd be a megl√©v√µ jelszavad a bejelentkez√©shez:", !"{00FF00}Tov√°bb", !"{FF0000}Bez√°r");
 	return 1;
 }
 
 stock RegisterDialog(playerid)
 {
 	new str[64];
-	format(str, sizeof(str), "{0080FF}Regisztr·ciÛ: {%06x}%s(%d)", GetPlayerColor(playerid) >>> 8, pName(playerid), playerid);
-	ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, str, !"{FFFFFF}Ez a felhaszn·lÛ mÈg nincs regisztr·lva. Õrd be a leendı jelszavad a regisztr·ciÛhoz:", !"{00FF00}Tov·bb", !"{FF0000}Bez·r");
+	format(str, sizeof(str), "{0080FF}Regisztr√°ci√≥: {%06x}%s(%d)", GetPlayerColor(playerid) >>> 8, pName(playerid), playerid);
+	ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, str, !"{FFFFFF}Ez a felhaszn√°l√≥ m√©g nincs regisztr√°lva. √çrd be a leend√µ jelszavad a regisztr√°ci√≥hoz:", !"{00FF00}Tov√°bb", !"{FF0000}Bez√°r");
 	return 1;
 }
 
 stock LoginPlayer(playerid)
 {
 	new iPVarSet[6], iRegID = GetPVarInt(playerid, "LineID");
-	if(!iRegID) return printf("Rossz RegID. J·tÈkos: %s(%d) (regid: %d)", pName(playerid), playerid, iRegID);
+	if(!iRegID) return printf("Rossz RegID. J√°t√©kos: %s(%d) (regid: %d)", pName(playerid), playerid, iRegID);
 	SetPVarInt(playerid, "RegID", iRegID);
 	cache_get_value_index_int(0, 0, iPVarSet[0]);
 	iPVarSet[0] = 1;
@@ -536,14 +536,14 @@ CMD:changename(playerid, params[])
 
 CMD:changepass(playerid, params[])
 {
-	ShowPlayerDialog(playerid, DIALOG_CHANGEPASS, DIALOG_STYLE_PASSWORD, "{0080FF}JelszÛv·lt·s", "{FFFFFF}Õrd be a leendı jelszavad: \n\n", "{00FF00}Tov·bb", "{FF0000}Bez·r");
+	ShowPlayerDialog(playerid, DIALOG_CHANGEPASS, DIALOG_STYLE_PASSWORD, "{0080FF}Jelsz√≥v√°lt√°s", "{FFFFFF}√çrd be a leend√µ jelszavad: \n\n", "{00FF00}Tov√°bb", "{FF0000}Bez√°r");
 	return 1;
 }
 
 CMD:findplayer(playerid, params[])
 {
-	if(isnull(params)) return SendClientMessage(playerid, 0x00FF00FF, "{0080FF}J·tÈkoskeresÈs: {FF4040}/findplayer <nÈvrÈszlet>");
-	if(strlen(params) > MAX_PLAYER_NAME) return SendClientMessage(playerid, 0x00FF00FF, "{0080FF}J·tÈkoskeresÈs: {FF0000}Az ·ltalad beÌrt rÈszlet nem megfelelı{FF4040}(3-20){FF0000}!");
+	if(isnull(params)) return SendClientMessage(playerid, 0x00FF00FF, "{0080FF}J√°t√©koskeres√©s: {FF4040}/findplayer <n√©vr√©szlet>");
+	if(strlen(params) > MAX_PLAYER_NAME) return SendClientMessage(playerid, 0x00FF00FF, "{0080FF}J√°t√©koskeres√©s: {FF0000}Az √°ltalad be√≠rt r√©szlet nem megfelel√µ{FF4040}(3-20){FF0000}!");
 	format(g_szQuery, sizeof(g_szQuery), "SELECT `name` FROM `players` WHERE `name` LIKE '%s%s%s'", "%%", params, "%%");
 	mysql_pquery(SQL, g_szQuery, "THREAD_FindplayerDialog", "dsd", playerid, params, g_pQueryQueue[playerid]);
 	return 1;
@@ -555,7 +555,7 @@ CMD:restart(playerid, params[])
 	return 1;
 }
 
-/* sql faszfel·llÌtÛ
+/* sql faszfel√°ll√≠t√≥
 CREATE TABLE IF NOT EXISTS `connections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(21) NOT NULL,
